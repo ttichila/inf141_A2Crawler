@@ -30,10 +30,13 @@ def is_valid(url):
         # check following docs and hint look at netloc and the code on lines 25-27: https://docs.python.org/3/library/urllib.parse.html#module-urllib.parse
         
         #return only urls that are within the domain and paths
-        validDomain = [".ics.uci.edu/", ".cs.uci.edu/", ".informatics.uci.edu/", ".stat.uci.edu/"]
+        validDomain = {".ics.uci.edu/", ".cs.uci.edu/", ".informatics.uci.edu/", ".stat.uci.edu/"}
         for i in validDomain:
             if i in url:
                 return True
+
+        if parsed.netloc in validDomain:
+            return True
 
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"

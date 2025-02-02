@@ -31,12 +31,8 @@ def is_valid(url):
         
         #return only urls that are within the domain and paths
         validDomain = {".ics.uci.edu/", ".cs.uci.edu/", ".informatics.uci.edu/", ".stat.uci.edu/"}
-        for i in validDomain:
-            if i in url:
-                return True
-
-        if parsed.netloc in validDomain:
-            return True
+        if parsed.netloc not in validDomain:
+            return False
 
         return not re.match(
             r".*\.(css|js|bmp|gif|jpe?g|ico"

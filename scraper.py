@@ -25,6 +25,10 @@ def is_valid(url):
         parsed = urlparse(url)
         if parsed.scheme not in set(["http", "https"]):
             return False
+        # we can convert the below to O(1) by using urllib -> parse -> urlparse and checking if netloc in set 
+        # this will work because sets use hash tables in their implementation and dict lookup is O(1)
+        # check following docs and hint look at netloc: https://docs.python.org/3/library/urllib.parse.html#module-urllib.parse
+        
         #return only urls that are within the domain and paths
         validDomain = [".ics.uci.edu/", ".cs.uci.edu/", ".informatics.uci.edu/", ".stat.uci.edu/"]
         for i in validDomain:
